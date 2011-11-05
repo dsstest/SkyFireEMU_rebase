@@ -1213,7 +1213,7 @@ void Group::SendUpdate()
             Player* member = ObjectAccessor::FindPlayer(citr2->guid);
 
             uint8 onlineState = (member) ? MEMBER_STATUS_ONLINE : MEMBER_STATUS_OFFLINE;
-            onlineState = onlineState | ((isBGGroup() || isBFGroup() ? MEMBER_STATUS_PVP : 0);
+            onlineState = onlineState | ((isBGGroup() || isBFGroup() ? MEMBER_STATUS_PVP : 0));
 
             data << citr2->name;
             data << uint64(citr2->guid);                    // guid
