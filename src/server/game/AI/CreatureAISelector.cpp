@@ -134,7 +134,11 @@ namespace FactorySelector
         GameObjectAIRegistry& ai_registry(*GameObjectAIRepository::instance());
 
         ai_factory = ai_registry.GetRegistryItem(go->GetAIName());
-
+                
+        //scriptname in db
+        if (!ai_factory)
+            if (GameObjectAI* scriptedAI = sScriptMgr->GetGameObjectAI(go))
+    
         //future goAI types go here
 
         std::string ainame = (ai_factory == NULL || go->GetScriptId()) ? "NullGameObjectAI" : ai_factory->key();
