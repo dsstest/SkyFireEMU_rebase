@@ -4556,7 +4556,7 @@ bool Player::resetTalents(bool no_cost)
         return false;
     }
 
-    uint64 cost = 0;
+    uint32 cost = 0;
 
     if (!no_cost && !sWorld->getBoolConfig(CONFIG_NO_RESET_TALENT_COST))
     {
@@ -4568,8 +4568,6 @@ bool Player::resetTalents(bool no_cost)
             return false;
         }
     }
-
-    RemovePet(NULL, PET_SAVE_NOT_IN_SLOT, true);
 
     for (uint32 i = 0; i < sTalentStore.GetNumRows(); ++i)
     {
@@ -4606,8 +4604,23 @@ bool Player::resetTalents(bool no_cost)
         }
     }
 
+    RemovePet(NULL, PET_SAVE_NOT_IN_SLOT, true);
+
+    for (uint32 i = 0; i < sTalentTreePrimarySpellsStore.GetNumRows(); ++i)
+    {
+        TalentTreePrimarySpellsEntry const *talentInfo = sTalentTreePrimarySpellsStore.LookupEntry(i);
+
+        if (!talentInfo || talentInfo->TalentTabID != GetTalentBranchSpec(m_activeSpec))
+            continue;
+
+        removeSpell(talentInfo->SpellID, true);
+    }
+
+    m_branchSpec[m_activeSpec] = 0;
+
     SQLTransaction trans = CharacterDatabase.BeginTransaction();
     _SaveTalents(trans);
+    _SaveTalentBranchSpecs(trans);
     _SaveSpells(trans);
     CharacterDatabase.CommitTransaction(trans);
 
@@ -24307,7 +24320,7 @@ void Player::LearnTalent(uint32 talentId, uint32 talentRank, bool one)
     // Check if it requires another talent
     if (talentInfo->DependsOn > 0)
     {
-        if (TalentEntry const *depTalentInfo = sTalentStore.LookupEntry(talentInfo->DependsOn))
+        if (TalentEntry const* depTalentInfo = sTalentStore.LookupEntry(talentInfo->DependsOn))
         {
             bool hasEnoughRank = false;
             for (uint8 rank = talentInfo->DependsOnRank; rank < MAX_TALENT_RANK; rank++)
@@ -24445,7 +24458,7 @@ void Player::LearnPetTalent(uint64 petGuid, uint32 talentId, uint32 talentRank)
     // Check if it requires another talent
     if (talentInfo->DependsOn > 0)
     {
-        if (TalentEntry const *depTalentInfo = sTalentStore.LookupEntry(talentInfo->DependsOn))
+        if (TalentEntry const* depTalentInfo = sTalentStore.LookupEntry(talentInfo->DependsOn))
         {
             bool hasEnoughRank = false;
             for (uint8 rank = talentInfo->DependsOnRank; rank < MAX_TALENT_RANK; rank++)
