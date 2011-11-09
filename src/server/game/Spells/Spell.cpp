@@ -3923,7 +3923,7 @@ void Spell::SendSpellGo()
 
 void Spell::WriteAmmoToPacket(WorldPacket* data)
 {
-    uint32 ammoInventoryType = 0;
+    /*uint32 ammoInventoryType = 0;
     uint32 ammoDisplayID = 0;
 
     if (m_caster->GetTypeId() == TYPEID_PLAYER)
@@ -3990,7 +3990,7 @@ void Spell::WriteAmmoToPacket(WorldPacket* data)
     }
 
     *data << uint32(ammoDisplayID);
-    *data << uint32(ammoInventoryType);
+    *data << uint32(ammoInventoryType);*/
 }
 
 void Spell::WriteSpellGoTargets(WorldPacket* data)
