@@ -2532,7 +2532,7 @@ void SmartScript::ProcessEvent(SmartScriptHolder& e, Unit* unit, uint32 var0, ui
         case SMART_EVENT_ACCEPTED_QUEST:
         case SMART_EVENT_REWARD_QUEST:
         {
-            if (e.event.quest.quest && var0 != e.event.quest.quest)
+            if (e.event.quest.quest != 0 && var0 != e.event.quest.quest)
                 return;
             ProcessAction(e, unit, var0);
             break;

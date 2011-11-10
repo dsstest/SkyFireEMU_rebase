@@ -405,7 +405,7 @@ bool SmartAIMgr::IsEventValid(SmartScriptHolder& e)
                 break;
             case SMART_EVENT_ACCEPTED_QUEST:
             case SMART_EVENT_REWARD_QUEST:
-                if (e.event.quest.quest && !IsQuestValid(e, e.event.quest.quest))
+                if (e.event.quest.quest && e.event.quest.quest != 0 && !IsQuestValid(e, e.event.quest.quest))
                     return false;
                 break;
             case SMART_EVENT_RECEIVE_EMOTE:
