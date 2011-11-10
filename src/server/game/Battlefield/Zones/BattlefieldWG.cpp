@@ -39,10 +39,10 @@ bool BattlefieldWG::SetupBattlefield()
     m_ZoneId = BATTLEFIELD_WG_ZONEID;
     m_MapId = BATTLEFIELD_WG_MAPID;
 
-    m_MaxPlayer = sWorld->getIntConfig(CONFIG_WINTERGRASP_player_MAX);
+    m_MaxPlayer = sWorld->getIntConfig(CONFIG_WINTERGRASP_PLAYER_MAX);
     m_enable = sWorld->getBoolConfig(CONFIG_WINTERGRASP_ENABLE);
-    m_MinPlayer = sWorld->getIntConfig(CONFIG_WINTERGRASP_player_MIN);
-    m_MinLevel = sWorld->getIntConfig(CONFIG_WINTERGRASP_player_MIN_LVL);
+    m_MinPlayer = sWorld->getIntConfig(CONFIG_WINTERGRASP_PLAYER_MIN);
+    m_MinLevel = sWorld->getIntConfig(CONFIG_WINTERGRASP_PLAYER_MIN_LVL);
     m_BattleTime = sWorld->getIntConfig(CONFIG_WINTERGRASP_BATTLETIME) * MINUTE * IN_MILLISECONDS;
     m_NoWarBattleTime = sWorld->getIntConfig(CONFIG_WINTERGRASP_NOBATTLETIME) * MINUTE * IN_MILLISECONDS;
     m_RestartAfterCrash = sWorld->getIntConfig(CONFIG_WINTERGRASP_RESTART_AFTER_CRASH) * MINUTE * IN_MILLISECONDS;
