@@ -273,6 +273,7 @@ class WorldSession
 
         void LogoutPlayer(bool Save);
         void KickPlayer();
+		void HandleMoveToGraveyard(WorldPacket &recv_data);		
 
         void QueuePacket(WorldPacket* new_packet);
         bool Update(uint32 diff, PacketFilter& updater);
@@ -658,6 +659,7 @@ class WorldSession
         void HandleAutoStoreBankItemOpcode(WorldPacket& recvPacket);
         void HandleWrapItemOpcode(WorldPacket& recvPacket);
 
+		void HandleReforgeOpcode(WorldPacket & recv_data);
         void HandleAttackSwingOpcode(WorldPacket& recvPacket);
         void HandleAttackStopOpcode(WorldPacket& recvPacket);
         void HandleSetSheathedOpcode(WorldPacket& recvPacket);
@@ -766,6 +768,7 @@ class WorldSession
         void HandleBattlemasterJoinOpcode(WorldPacket& recv_data);
         void HandleBattlegroundPlayerPositionsOpcode(WorldPacket& recv_data);
         void HandlePVPLogDataOpcode(WorldPacket& recv_data);
+		void WorldQueryBattlefieldState(WorldPacket &recv_data);		
         void HandleBattleFieldPortOpcode(WorldPacket& recv_data);
         void HandleBattlefieldListOpcode(WorldPacket& recv_data);
         void HandleLeaveBattlefieldOpcode(WorldPacket& recv_data);
@@ -826,6 +829,7 @@ class WorldSession
         void SendLfgTeleportError(uint8 err);
 
         // Arena Team
+        void HandleArenaTeamCreateOpcode(WorldPacket& recvData);		
         void HandleInspectArenaTeamsOpcode(WorldPacket& recv_data);
         void HandleArenaTeamQueryOpcode(WorldPacket& recv_data);
         void HandleArenaTeamRosterOpcode(WorldPacket& recv_data);
@@ -911,6 +915,11 @@ class WorldSession
         void HandleUpdateProjectilePosition(WorldPacket& recvPacket);
         void HandleReforgeItem(WorldPacket& recv_data);
 
+        void HandleViolenceLevelOpcode(WorldPacket& recvPacket);
+        void HandleSendCemetryListResponse(WorldPacket& recvPacket);
+
+		void PlayerRequestCemeteryList(WorldPacket& recvPacket);
+		void PlayerViolenceLevel(WorldPacket& recvPacket);		
     private:
         void InitializeQueryCallbackParameters();
         void ProcessQueryCallbacks();
