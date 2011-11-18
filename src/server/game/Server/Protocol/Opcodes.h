@@ -75,7 +75,7 @@ enum Opcodes
     SMSG_GUILD_QUERY_RESPONSE                        = 0x076E3, // 14480
     CMSG_COMMENTATOR_START_WARGAME                   = 0x1000C, //
     //CMSG_ITEM_QUERY_MULTIPLE                         = 0x05041, // 14480
-    //SMSG_ITEM_QUERY_SINGLE_RESPONSE                  = 0x08F23, // 14480
+    SMSG_ITEM_QUERY_SINGLE_RESPONSE                  = 0x08F23, // 14480
     //SMSG_ITEM_QUERY_MULTIPLE_RESPONSE                = 0x1000E, //
     SMSG_DB_REPLY                                    = 0x00C4E, // 4.0.6a 13623
     SMSG_HOTFIX_NOTIFY_BLOP                          = 0x04C1E, // 4.0.6a 13623 sent after SMSG_AUTH_RESPONSE
